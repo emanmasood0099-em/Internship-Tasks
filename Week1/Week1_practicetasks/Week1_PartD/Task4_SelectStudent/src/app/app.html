@@ -1,0 +1,26 @@
+<h1>Student List</h1>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+
+  @for (student of students; track student.id) {
+    <tr>
+      <td>{{ student.name }}</td>
+      <td>
+        <button (click)="selectStudent(student)">Select</button>
+      </td>
+    </tr>
+  }
+</table>
+
+@if (selectedStudent) {
+  <h2>Selected Student</h2>
+
+  <p>ID: {{ selectedStudent.id }}</p>
+  <p>Name: {{ selectedStudent.name }}</p>
+  <p>Department: {{ selectedStudent.department }}</p>
+  <p>Marks: {{ selectedStudent.marks }}</p>
+}

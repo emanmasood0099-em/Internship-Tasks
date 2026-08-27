@@ -1,0 +1,50 @@
+<h1>Student Registration</h1>
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <!-- Name -->
+  <label>Name:</label>
+  <input type="text" formControlName="name">
+
+  <div *ngIf="registrationForm.get('name')?.touched &&
+              registrationForm.get('name')?.hasError('required')">
+    Name is required.
+  </div>
+
+  <br>
+
+  <!-- Email -->
+  <label>Email:</label>
+  <input type="email" formControlName="email">
+
+  <div *ngIf="registrationForm.get('email')?.touched &&
+              registrationForm.get('email')?.hasError('required')">
+    Email is required.
+  </div>
+
+  <div *ngIf="registrationForm.get('email')?.touched &&
+              registrationForm.get('email')?.hasError('email')">
+    Please enter a valid email.
+  </div>
+
+  <br>
+
+  <!-- Password -->
+  <label>Password:</label>
+  <input type="password" formControlName="password">
+
+  <div *ngIf="registrationForm.get('password')?.touched &&
+              registrationForm.get('password')?.hasError('required')">
+    Password is required.
+  </div>
+
+  <div *ngIf="registrationForm.get('password')?.touched &&
+              registrationForm.get('password')?.hasError('minlength')">
+    Password must be at least 6 characters.
+  </div>
+
+  <br>
+
+  <button type="submit">Register</button>
+
+</form>

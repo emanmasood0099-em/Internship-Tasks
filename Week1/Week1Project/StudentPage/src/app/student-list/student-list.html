@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1>Student Management System</h1>
+
+  <input
+    type="text"
+    placeholder="Search student..."
+    [(ngModel)]="searchText"
+  >
+
+  <p>Students found: {{ filteredStudents.length }}</p>
+
+  @for (student of filteredStudents; track student.id) {
+    <app-student-card [student]="student"></app-student-card>
+  }
+
+</div>
