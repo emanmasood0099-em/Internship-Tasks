@@ -5,7 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
 // EF Core + SQL Server
 builder.Services.AddDbContext<LibraryDbContext>(options =>
@@ -25,7 +30,7 @@ builder.Services.AddCors(options =>
 });
 
 // Dependency Injection
-builder.Services.AddSingleton<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
 // Swagger

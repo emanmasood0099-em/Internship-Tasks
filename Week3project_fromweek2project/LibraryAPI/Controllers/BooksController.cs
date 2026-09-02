@@ -17,18 +17,18 @@ public class BooksController : ControllerBase
 
     // GET: api/books
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        var books = service.GetAll();
+        var books = await service.GetAllAsync();
 
         return Ok(books);
     }
 
     // GET: api/books/1
     [HttpGet("{id}")]
-    public IActionResult GetById(int id)
+    public async Task<IActionResult> GetById(int id)
     {
-        var book = service.GetById(id);
+        var book = await service.GetByIdAsync(id);
 
         if (book == null)
         {
@@ -40,9 +40,9 @@ public class BooksController : ControllerBase
 
     // POST: api/books
     [HttpPost]
-    public IActionResult Create(BookDto bookDto)
+    public async Task<IActionResult> Create(BookDto bookDto)
     {
-        var book = service.Add(bookDto);
+        var book = await service.AddAsync(bookDto);
 
         return CreatedAtAction(
             nameof(GetById),
@@ -53,9 +53,9 @@ public class BooksController : ControllerBase
 
     // PUT: api/books/1
     [HttpPut("{id}")]
-    public IActionResult Update(int id, BookDto bookDto)
+    public async Task<IActionResult> Update(int id, BookDto bookDto)
     {
-        var updated = service.Update(id, bookDto);
+        var updated = await service.UpdateAsync(id, bookDto);
 
         if (!updated)
         {
@@ -67,9 +67,9 @@ public class BooksController : ControllerBase
 
     // DELETE: api/books/1
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var deleted = service.Delete(id);
+        var deleted = await service.DeleteAsync(id);
 
         if (!deleted)
         {
