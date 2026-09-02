@@ -1,0 +1,15 @@
+# .NET
+bin/
+obj/
+appsettings.Development.json
+
+# Angular / Node
+node_modules/
+dist/
+
+# Python
+.venv/
+__pycache__/
+
+# Environment / secrets
+.env
