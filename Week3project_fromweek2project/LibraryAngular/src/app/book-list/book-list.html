@@ -1,0 +1,44 @@
+<h1>Library Book List</h1>
+
+<p>
+  <strong>Total books: {{ books.length }}</strong>
+</p>
+
+@if (books.length === 0) {
+  <p>No books found.</p>
+}
+
+@for (book of books; track book.id) {
+
+  <div>
+
+    <h2>{{ book.title }}</h2>
+
+    <p>
+      <strong>ID:</strong> {{ book.id }}
+    </p>
+
+    <p>
+      <strong>Author:</strong> {{ book.author }}
+    </p>
+
+    <p>
+      <strong>Category:</strong> {{ book.category }}
+    </p>
+
+    <button
+      type="button"
+      (click)="edit(book)">
+      Edit
+    </button>
+
+    <button
+      type="button"
+      (click)="deleteBook(book.id)">
+      Delete
+    </button>
+
+    <hr>
+
+  </div>
+}
