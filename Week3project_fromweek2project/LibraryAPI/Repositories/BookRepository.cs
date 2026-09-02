@@ -1,56 +1,43 @@
+using LibraryAPI.Data;
 using LibraryAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryAPI.Repositories;
 
 public class BookRepository : IBookRepository
 {
-    private readonly List<Book> books = new()
-    {
-        new Book
-        {
-            BookId = 1,
-            Title = "The Alchemist",
-            AuthorId = 1
-        },
-        new Book
-        {
-            BookId = 2,
-            Title = "Clean Code",
-            AuthorId = 2
-        },
-        new Book
-        {
-            BookId = 3,
-            Title = "Harry Potter",
-            AuthorId = 3
-        }
-    };
+    private readonly LibraryDbContext context;
 
-    public List<Book> GetAll()
+    public BookRepository(LibraryDbContext context)
     {
-        return books;
+        this.context = context;
     }
 
-    public Book? GetById(int id)
+    public async Task<List<Book>> GetAllAsync()
     {
-        return books.FirstOrDefault(book => book.BookId == id);
+        return await context.Books
+            .ToListAsync();
     }
 
-    public Book Add(Book book)
+    public async Task<Book?> GetByIdAsync(int id)
     {
-        int newId = books.Count == 0
-            ? 1
-            : books.Max(book => book.BookId) + 1;
+        return await context.Books
+            .FirstOrDefaultAsync(b => b.BookId == id);
+    }
 
-        book.BookId = newId;
-        books.Add(book);
+    public async Task<Book> AddAsync(Book book)
+    {
+        context.Books.Add(book);
+        await context.SaveChangesAsync();
 
         return book;
     }
 
-    public bool Update(int id, Book book)
+    public async Task<bool> UpdateAsync(int id, Book book)
     {
-        var existingBook = books.FirstOrDefault(b => b.BookId == id);
+        var existingBook = await context.Books
+            .Include(b => b.BookCategories)
+            .FirstOrDefaultAsync(b => b.BookId == id);
 
         if (existingBook == null)
         {
@@ -59,21 +46,35 @@ public class BookRepository : IBookRepository
 
         existingBook.Title = book.Title;
         existingBook.AuthorId = book.AuthorId;
-        existingBook.BookCategories = book.BookCategories;
+
+        context.BookCategories.RemoveRange(existingBook.BookCategories);
+
+        foreach (var bookCategory in book.BookCategories)
+        {
+            existingBook.BookCategories.Add(new BookCategory
+            {
+                BookId = id,
+                CategoryId = bookCategory.CategoryId
+            });
+        }
+
+        await context.SaveChangesAsync();
 
         return true;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var book = books.FirstOrDefault(b => b.BookId == id);
+        var book = await context.Books
+            .FirstOrDefaultAsync(b => b.BookId == id);
 
         if (book == null)
         {
             return false;
         }
 
-        books.Remove(book);
+        context.Books.Remove(book);
+        await context.SaveChangesAsync();
 
         return true;
     }

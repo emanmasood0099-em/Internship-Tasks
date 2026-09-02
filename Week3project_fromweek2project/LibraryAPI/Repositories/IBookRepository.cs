@@ -4,13 +4,13 @@ namespace LibraryAPI.Repositories;
 
 public interface IBookRepository
 {
-    List<Book> GetAll();
+    Task<List<Book>> GetAllAsync();
 
-    Book? GetById(int id);
+    Task<Book?> GetByIdAsync(int id);
 
-    Book Add(Book book);
+    Task<Book> AddAsync(Book book);
 
-    bool Update(int id, Book book);
+    Task<bool> UpdateAsync(int id, Book book);
 
-    bool Delete(int id);
+    Task<bool> DeleteAsync(int id);
 }

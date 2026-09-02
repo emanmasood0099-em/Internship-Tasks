@@ -5,13 +5,13 @@ namespace LibraryAPI.Services;
 
 public interface IBookService
 {
-    List<Book> GetAll();
+    Task<List<Book>> GetAllAsync();
 
-    Book? GetById(int id);
+    Task<Book?> GetByIdAsync(int id);
 
-    Book Add(BookDto bookDto);
+    Task<Book> AddAsync(BookDto bookDto);
 
-    bool Update(int id, BookDto bookDto);
+    Task<bool> UpdateAsync(int id, BookDto bookDto);
 
-    bool Delete(int id);
+    Task<bool> DeleteAsync(int id);
 }

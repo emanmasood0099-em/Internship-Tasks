@@ -13,17 +13,17 @@ public class BookService : IBookService
         this.repository = repository;
     }
 
-    public List<Book> GetAll()
+    public async Task<List<Book>> GetAllAsync()
     {
-        return repository.GetAll();
+        return await repository.GetAllAsync();
     }
 
-    public Book? GetById(int id)
+    public async Task<Book?> GetByIdAsync(int id)
     {
-        return repository.GetById(id);
+        return await repository.GetByIdAsync(id);
     }
 
-    public Book Add(BookDto bookDto)
+    public async Task<Book> AddAsync(BookDto bookDto)
     {
         var book = new Book
         {
@@ -33,14 +33,13 @@ public class BookService : IBookService
 
         book.BookCategories.Add(new BookCategory
         {
-            BookId = book.BookId,
             CategoryId = bookDto.CategoryId
         });
 
-        return repository.Add(book);
+        return await repository.AddAsync(book);
     }
 
-    public bool Update(int id, BookDto bookDto)
+    public async Task<bool> UpdateAsync(int id, BookDto bookDto)
     {
         var book = new Book
         {
@@ -54,11 +53,11 @@ public class BookService : IBookService
             CategoryId = bookDto.CategoryId
         });
 
-        return repository.Update(id, book);
+        return await repository.UpdateAsync(id, book);
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        return repository.Delete(id);
+        return await repository.DeleteAsync(id);
     }
 }
