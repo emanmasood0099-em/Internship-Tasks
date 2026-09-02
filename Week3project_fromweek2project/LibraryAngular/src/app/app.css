@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0;
+  padding: 28px 40px;
+  background: #1e3a5f;
+  color: white;
+  font-size: 30px;
+}
+
+hr {
+  display: none;
+}
