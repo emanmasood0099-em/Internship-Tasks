@@ -18,6 +18,8 @@ public class LibraryDbContext : DbContext
 
     public DbSet<BookCategory> BookCategories => Set<BookCategory>();
 
+    public DbSet<User> Users => Set<User>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
