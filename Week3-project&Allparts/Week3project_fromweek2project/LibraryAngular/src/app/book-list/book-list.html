@@ -1,0 +1,53 @@
+<div class="book-list-container">
+
+  <h2>Books</h2>
+
+  @if (isLoading) {
+    <p>Loading books...</p>
+  }
+
+  @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+  }
+
+  @if (!isLoading && !errorMessage && books.length === 0) {
+    <p>No books found.</p>
+  }
+
+  @for (book of books; track book.bookId) {
+
+    <div class="book-card">
+
+      <h3>{{ book.title }}</h3>
+
+      <p>
+        <strong>ID:</strong> {{ book.bookId }}
+      </p>
+
+      <p>
+        <strong>Author ID:</strong> {{ book.authorId }}
+      </p>
+
+      <p>
+        <strong>Category ID:</strong> {{ book.categoryId }}
+      </p>
+
+      <div class="book-actions">
+
+        <button type="button" (click)="edit(book)">
+          Edit
+        </button>
+
+        <button
+          type="button"
+          (click)="deleteBook(book.bookId)">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>
