@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Book {
-  id: number;
+  bookId: number;
   title: string;
-  author: string;
-  category: string;
+  authorId: number;
+  categoryId: number;
 }
 
 @Injectable({
@@ -24,23 +24,23 @@ export class BookService {
   }
 
   // GET book by ID
-  getBookById(id: number): Observable<Book> {
-    return this.http.get<Book>(`${this.apiUrl}/${id}`);
+  getBookById(bookId: number): Observable<Book> {
+    return this.http.get<Book>(`${this.apiUrl}/${bookId}`);
   }
 
   // POST add new book
-  addBook(book: Omit<Book, 'id'>): Observable<Book> {
+  addBook(book: Omit<Book, 'bookId'>): Observable<Book> {
     return this.http.post<Book>(this.apiUrl, book);
   }
 
   // PUT update existing book
   updateBook(
-    id: number,
-    book: Omit<Book, 'id'>
+    bookId: number,
+    book: Omit<Book, 'bookId'>
   ): Observable<string> {
 
     return this.http.put(
-      `${this.apiUrl}/${id}`,
+      `${this.apiUrl}/${bookId}`,
       book,
       {
         responseType: 'text'
@@ -49,10 +49,10 @@ export class BookService {
   }
 
   // DELETE book
-  deleteBook(id: number): Observable<string> {
+  deleteBook(bookId: number): Observable<string> {
 
     return this.http.delete(
-      `${this.apiUrl}/${id}`,
+      `${this.apiUrl}/${bookId}`,
       {
         responseType: 'text'
       }

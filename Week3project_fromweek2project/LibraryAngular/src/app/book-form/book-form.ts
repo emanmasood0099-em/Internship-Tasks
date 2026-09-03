@@ -15,15 +15,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book';
 
 @Component({
-
   selector: 'app-book-form',
-
   imports: [ReactiveFormsModule],
-
   templateUrl: './book-form.html',
-
   styleUrl: './book-form.css'
-
 })
 export class BookForm implements OnInit {
 
@@ -38,12 +33,11 @@ export class BookForm implements OnInit {
       Validators.minLength(2)
     ]),
 
-    author: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2)
+    authorId: new FormControl<number | null>(null, [
+      Validators.required
     ]),
 
-    category: new FormControl('', [
+    categoryId: new FormControl<number | null>(null, [
       Validators.required
     ])
 
@@ -68,9 +62,7 @@ export class BookForm implements OnInit {
       console.log('Editing book ID:', this.editBookId);
 
       this.loadBook(this.editBookId);
-
     }
-
   }
 
   loadBook(id: number): void {
@@ -85,9 +77,9 @@ export class BookForm implements OnInit {
 
           title: book.title,
 
-          author: book.author,
+          authorId: book.authorId,
 
-          category: book.category
+          categoryId: book.categoryId
 
         });
 
@@ -98,11 +90,9 @@ export class BookForm implements OnInit {
         console.error('Error loading book:', error);
 
         alert('Could not load book.');
-
       }
 
     });
-
   }
 
   submitForm(): void {
@@ -112,16 +102,15 @@ export class BookForm implements OnInit {
       this.bookForm.markAllAsTouched();
 
       return;
-
     }
 
     const book = {
 
       title: this.bookForm.value.title!,
 
-      author: this.bookForm.value.author!,
+      authorId: this.bookForm.value.authorId!,
 
-      category: this.bookForm.value.category!
+      categoryId: this.bookForm.value.categoryId!
 
     };
 
@@ -160,13 +149,11 @@ export class BookForm implements OnInit {
             );
 
             alert('Could not update book.');
-
           }
 
         });
 
       return;
-
     }
 
     // ADD
@@ -196,11 +183,9 @@ export class BookForm implements OnInit {
         );
 
         alert('Could not add book.');
-
       }
 
     });
-
   }
 
   cancelEdit(): void {
@@ -214,5 +199,4 @@ export class BookForm implements OnInit {
     this.router.navigate(['/books']);
 
   }
-
 }

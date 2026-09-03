@@ -1,44 +1,53 @@
-<h1>Library Book List</h1>
+<div class="book-list-container">
 
-<p>
-  <strong>Total books: {{ books.length }}</strong>
-</p>
+  <h2>Books</h2>
 
-@if (books.length === 0) {
-  <p>No books found.</p>
-}
+  @if (isLoading) {
+    <p>Loading books...</p>
+  }
 
-@for (book of books; track book.id) {
+  @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+  }
 
-  <div>
+  @if (!isLoading && !errorMessage && books.length === 0) {
+    <p>No books found.</p>
+  }
 
-    <h2>{{ book.title }}</h2>
+  @for (book of books; track book.bookId) {
 
-    <p>
-      <strong>ID:</strong> {{ book.id }}
-    </p>
+    <div class="book-card">
 
-    <p>
-      <strong>Author:</strong> {{ book.author }}
-    </p>
+      <h3>{{ book.title }}</h3>
 
-    <p>
-      <strong>Category:</strong> {{ book.category }}
-    </p>
+      <p>
+        <strong>ID:</strong> {{ book.bookId }}
+      </p>
 
-    <button
-      type="button"
-      (click)="edit(book)">
-      Edit
-    </button>
+      <p>
+        <strong>Author ID:</strong> {{ book.authorId }}
+      </p>
 
-    <button
-      type="button"
-      (click)="deleteBook(book.id)">
-      Delete
-    </button>
+      <p>
+        <strong>Category ID:</strong> {{ book.categoryId }}
+      </p>
 
-    <hr>
+      <div class="book-actions">
 
-  </div>
-}
+        <button type="button" (click)="edit(book)">
+          Edit
+        </button>
+
+        <button
+          type="button"
+          (click)="deleteBook(book.bookId)">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

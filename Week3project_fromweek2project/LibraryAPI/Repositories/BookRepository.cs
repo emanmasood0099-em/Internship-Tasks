@@ -16,12 +16,14 @@ public class BookRepository : IBookRepository
     public async Task<List<Book>> GetAllAsync()
     {
         return await context.Books
+            .Include(b => b.BookCategories)
             .ToListAsync();
     }
 
     public async Task<Book?> GetByIdAsync(int id)
     {
         return await context.Books
+            .Include(b => b.BookCategories)
             .FirstOrDefaultAsync(b => b.BookId == id);
     }
 
