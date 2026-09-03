@@ -20,6 +20,10 @@ export class BookList implements OnInit {
 
   books: Book[] = [];
 
+  isLoading = false;
+
+  errorMessage = '';
+
   constructor(
     private bookService: BookService,
     private cdr: ChangeDetectorRef
@@ -28,16 +32,17 @@ export class BookList implements OnInit {
   }
 
   ngOnInit(): void {
-
     console.log('BookList started');
 
     this.loadBooks();
-
   }
 
   loadBooks(): void {
 
     console.log('Loading books from API...');
+
+    this.isLoading = true;
+    this.errorMessage = '';
 
     this.bookService.getBooks().subscribe({
 
@@ -48,11 +53,11 @@ export class BookList implements OnInit {
         this.books = data;
 
         console.log('BOOKS STORED:', this.books);
-
         console.log('TOTAL:', this.books.length);
 
-        this.cdr.detectChanges();
+        this.isLoading = false;
 
+        this.cdr.detectChanges();
       },
 
       error: (error) => {
@@ -61,42 +66,41 @@ export class BookList implements OnInit {
 
         this.books = [];
 
-        this.cdr.detectChanges();
+        this.isLoading = false;
 
+        this.errorMessage =
+          'Could not load books. Please make sure the API is running.';
+
+        this.cdr.detectChanges();
       }
 
     });
-
   }
 
   edit(book: Book): void {
 
     console.log('Edit clicked:', book);
 
-    window.location.href = `/form?id=${book.id}`;
-
+    window.location.href = `/form?id=${book.bookId}`;
   }
 
-  deleteBook(id: number): void {
+  deleteBook(bookId: number): void {
 
     const confirmed = confirm(
       'Are you sure you want to delete this book?'
     );
 
     if (!confirmed) {
-
       return;
-
     }
 
-    this.bookService.deleteBook(id).subscribe({
+    this.bookService.deleteBook(bookId).subscribe({
 
       next: () => {
 
         alert('Book deleted successfully!');
 
         this.loadBooks();
-
       },
 
       error: (error) => {
@@ -108,7 +112,5 @@ export class BookList implements OnInit {
       }
 
     });
-
   }
-
 }

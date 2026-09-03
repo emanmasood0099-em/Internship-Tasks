@@ -25,42 +25,42 @@
 
   <br>
 
-  <!-- Author -->
+  <!-- Author ID -->
   <div>
-    <label>Author:</label>
+    <label>Author ID:</label>
 
     <input
-      type="text"
-      formControlName="author"
+      type="number"
+      formControlName="authorId"
     />
 
     @if (
-      bookForm.get('author')?.invalid &&
-      bookForm.get('author')?.touched
+      bookForm.get('authorId')?.invalid &&
+      bookForm.get('authorId')?.touched
     ) {
       <p>
-        Author is required and must be at least 2 characters.
+        Author ID is required.
       </p>
     }
   </div>
 
   <br>
 
-  <!-- Category -->
+  <!-- Category ID -->
   <div>
-    <label>Category:</label>
+    <label>Category ID:</label>
 
     <input
-      type="text"
-      formControlName="category"
+      type="number"
+      formControlName="categoryId"
     />
 
     @if (
-      bookForm.get('category')?.invalid &&
-      bookForm.get('category')?.touched
+      bookForm.get('categoryId')?.invalid &&
+      bookForm.get('categoryId')?.touched
     ) {
       <p>
-        Category is required.
+        Category ID is required.
       </p>
     }
   </div>
