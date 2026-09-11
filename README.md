@@ -95,3 +95,5 @@ The AI service is located in Week4/Project/AI-Service.
    http://127.0.0.1:8000/docs
 
 The .NET Library API and the AI service run independently in Week 4.
+
+PR template test.
