@@ -79,3 +79,19 @@ A migration named `AddUser` was created to add the `Users` table.
 
 ```text
 20260903014116_AddUser
+## Week 4 - How to Run the AI Service
+
+The AI service is located in Week4/Project/AI-Service.
+
+### Run the AI Service
+
+1. Create and activate a Python virtual environment.
+2. Install dependencies:
+   pip install -r requirements.txt
+3. Set the GEMINI_API_KEY environment variable.
+4. Start the service:
+   python -m uvicorn main:app --reload
+5. Open Swagger:
+   http://127.0.0.1:8000/docs
+
+The .NET Library API and the AI service run independently in Week 4.
