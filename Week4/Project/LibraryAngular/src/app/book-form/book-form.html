@@ -1,0 +1,86 @@
+<h1>
+  {{ isEditMode ? 'Edit Book' : 'Book Form' }}
+</h1>
+
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+
+  <!-- Title -->
+  <div>
+    <label>Title:</label>
+
+    <input
+      type="text"
+      formControlName="title"
+    />
+
+    @if (
+      bookForm.get('title')?.invalid &&
+      bookForm.get('title')?.touched
+    ) {
+      <p>
+        Title is required and must be at least 2 characters.
+      </p>
+    }
+  </div>
+
+  <br>
+
+  <!-- Author ID -->
+  <div>
+    <label>Author ID:</label>
+
+    <input
+      type="number"
+      formControlName="authorId"
+    />
+
+    @if (
+      bookForm.get('authorId')?.invalid &&
+      bookForm.get('authorId')?.touched
+    ) {
+      <p>
+        Author ID is required.
+      </p>
+    }
+  </div>
+
+  <br>
+
+  <!-- Category ID -->
+  <div>
+    <label>Category ID:</label>
+
+    <input
+      type="number"
+      formControlName="categoryId"
+    />
+
+    @if (
+      bookForm.get('categoryId')?.invalid &&
+      bookForm.get('categoryId')?.touched
+    ) {
+      <p>
+        Category ID is required.
+      </p>
+    }
+  </div>
+
+  <br>
+
+  <!-- Submit button -->
+  <button type="submit">
+    {{ isEditMode ? 'Update Book' : 'Add Book' }}
+  </button>
+
+  <!-- Cancel button -->
+  @if (isEditMode) {
+
+    <button
+      type="button"
+      (click)="cancelEdit()">
+      Cancel
+    </button>
+
+  }
+
+</form>
