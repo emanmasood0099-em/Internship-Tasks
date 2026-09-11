@@ -1,0 +1,38 @@
+
+<div class="books-container">
+
+  <div class="books-card">
+
+    <h2>Books Management</h2>
+
+    <p>Manage your books from the dashboard.</p>
+
+    <div class="books-buttons">
+
+      @if (isAdmin) {
+        <button
+          type="button"
+          class="add-btn"
+          (click)="addBook()">
+          Add Book
+        </button>
+
+        <button
+          type="button"
+          class="delete-btn">
+          Delete Book
+        </button>
+      }
+
+      <button
+        type="button"
+        class="logout-btn"
+        (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

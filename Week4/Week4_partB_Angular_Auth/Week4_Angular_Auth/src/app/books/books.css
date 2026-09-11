@@ -1,0 +1,60 @@
+.books-container {
+  min-height: 100vh;
+  padding: 50px;
+  background: #f3f6fb;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.books-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.books-container h2 {
+  margin: 0 0 8px;
+  color: #1f2937;
+  font-size: 30px;
+}
+
+.books-container p {
+  margin-bottom: 30px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.books-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.books-buttons button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: #2563eb;
+}
+
+.delete-btn {
+  background: #dc2626;
+}
+
+.logout-btn {
+  background: #374151;
+}
+
+.books-buttons button:hover {
+  opacity: 0.88;
+}
