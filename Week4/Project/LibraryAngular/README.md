@@ -57,3 +57,8 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Angular Authentication
+- Login stores the JWT token for authenticated API requests.
+- The HTTP interceptor attaches the JWT token to API requests.
+- Route guards protect authenticated pages.
