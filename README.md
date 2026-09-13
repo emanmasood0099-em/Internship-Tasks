@@ -2,7 +2,7 @@
 
 ## Week 3 — SQL Server + Entity Framework Core + API/Angular Integration
 
-This repository contains the Week 3 implementation completed during the internship.
+This repository contains the Week 4 implementation completed by two interns using .NET, Angular, and AI.
 
 ---
 
