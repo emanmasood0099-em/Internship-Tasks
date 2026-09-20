@@ -1,0 +1,18 @@
+PART D — RAG QUALITY EVALUATION
+
+Test Questions
+
+1. Question: Which planet is third from the Sun?
+   Expected Answer: Earth
+
+2. Question: What programming language is used for web development, automation, and artificial intelligence?
+   Expected Answer: Python
+
+3. Question: Where is the Amazon rainforest located mainly?
+   Expected Answer: South America
+
+4. Question: What skills are commonly used in basketball?
+   Expected Answer: Dribbling, passing, shooting, and rebounding
+
+5. Question: What is the capital of Japan?
+   Expected Answer: The answer is not available in the provided documents.
