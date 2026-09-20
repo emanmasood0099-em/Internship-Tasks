@@ -1,0 +1,11 @@
+[
+  {
+    "id": "book_8",
+    "text": "Book Title: The Alchemists Updated. Author ID: 1. Category ID: 1.",
+    "metadata": {
+      "title": "The Alchemists Updated",
+      "author_id": 1,
+      "category_id": 1
+    }
+  }
+]
