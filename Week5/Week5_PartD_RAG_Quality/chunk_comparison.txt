@@ -1,0 +1,15 @@
+TASK 4 - CHUNK SIZE COMPARISON
+
+Original Chunk Size: 500
+- All 5 retrievals were correct.
+- All 5 generated answers were correct.
+
+New Chunk Size: 250
+- All 5 retrievals were correct.
+- Retrieval quality stayed the same.
+
+Conclusion:
+Reducing the chunk size from 500 to 250 did not improve or worsen retrieval quality for these 5 test questions. The retrieval results stayed the same because all 5 questions still retrieved relevant document chunks.
+
+Note:
+The full generation rerun could not be completed for Questions 4 and 5 because the Gemini free-tier generation quota was exhausted during the test. Therefore, the chunk-size comparison for answer generation is based on the original 500-chunk results and the successful 250-chunk retrieval evaluation.
