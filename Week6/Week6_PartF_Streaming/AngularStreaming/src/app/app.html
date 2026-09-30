@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>AI Streaming Assistant</h1>
+
+  <textarea
+    [(ngModel)]="question"
+    placeholder="Ask your question..."
+    rows="5">
+  </textarea>
+
+  <button (click)="askQuestion()" [disabled]="loading">
+    {{ loading ? 'Generating...' : 'Ask AI' }}
+  </button>
+
+  <div class="answer-box">
+    <h2>AI Response</h2>
+    <p>{{ answer }}</p>
+  </div>
+</div>
