@@ -1,0 +1,30 @@
+<nav>
+
+  <a routerLink="/books" *ngIf="isLoggedIn()">
+    Book List
+  </a>
+
+  |
+
+  <a routerLink="/form" *ngIf="isLoggedIn()">
+    Add Book
+  </a>
+
+  |
+
+  <a routerLink="/login" *ngIf="!isLoggedIn()">
+    Login
+  </a>
+
+  <button
+    type="button"
+    *ngIf="isLoggedIn()"
+    (click)="logout()">
+    Logout
+  </button>
+
+  <span *ngIf="isAdmin()">
+    | Admin
+  </span>
+
+</nav>

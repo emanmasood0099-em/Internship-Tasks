@@ -1,0 +1,167 @@
+PART B - ADVANCED RETRIEVAL ANALYSIS
+====================================
+
+1. FIVE-QUESTION COMPARISON
+---------------------------
+
+The same five evaluation questions from Week 5 were tested using both
+the plain retriever and the MultiQueryRetriever.
+
+Question 1:
+Which planet is third from the Sun?
+
+Plain Retriever:
+Retrieved the available book chunk.
+
+MultiQueryRetriever:
+Generated alternative queries about the third planet from the Sun and
+also retrieved the available book chunk.
+
+Question 2:
+What programming language is used for web development, automation,
+and artificial intelligence?
+
+Plain Retriever:
+Retrieved the available book chunk.
+
+MultiQueryRetriever:
+Generated three alternative queries about programming languages,
+web development, automation, and AI. It also retrieved the available
+book chunk.
+
+Question 3:
+Where is the Amazon rainforest located mainly?
+
+Plain Retriever:
+Retrieved the available book chunk.
+
+MultiQueryRetriever:
+Generated alternative queries about the geographic location of the
+Amazon rainforest and retrieved the available book chunk.
+
+Question 4:
+What skills are commonly used in basketball?
+
+Plain Retriever:
+Retrieved the available book chunk.
+
+MultiQueryRetriever:
+Generated alternative queries about basketball techniques and skills
+and retrieved the available book chunk.
+
+Question 5:
+What is the capital of Japan?
+
+Plain Retriever:
+Retrieved the available book chunk.
+
+MultiQueryRetriever:
+Generated alternative queries asking for the capital city of Japan
+and retrieved the available book chunk.
+
+Observation:
+For this five-question test, the retrievers returned the same available
+document because the current Week 5 corpus contains only one book record.
+Therefore, MultiQueryRetriever did not produce a different retrieved
+document for these questions. However, it successfully generated multiple
+alternative queries for every question.
+
+
+2. WHY MULTIQUERY CAN HELP
+--------------------------
+
+A single retrieval query may fail when the wording of the question is
+different from the wording used in the source document.
+
+MultiQueryRetriever asks the language model to create several alternative
+versions of the original question. Each alternative query is used for
+retrieval, and the retrieved documents are combined and deduplicated.
+
+This can improve recall because different query wordings may match
+different relevant documents.
+
+
+3. DISAGREEMENT / REFORMULATED QUERY OBSERVATION
+------------------------------------------------
+
+In the five-question evaluation, there was no difference in the final
+retrieved document between the plain retriever and MultiQueryRetriever.
+
+However, the MultiQueryRetriever clearly generated different formulations.
+
+For example, for the basketball question it generated queries such as:
+
+"What are the essential techniques and abilities required to play basketball?"
+
+"Which physical and tactical skills are most important for basketball players?"
+
+"What fundamental skills do you need to master to be good at basketball?"
+
+These queries express the same information need using different vocabulary.
+
+
+4. MULTIQUERY WORSE-CASE EXAMPLE
+--------------------------------
+
+A separate controlled challenge dataset was created without modifying
+the Week 5 data.
+
+Question:
+Which language is useful for programming?
+
+Plain Retriever:
+Python is widely used for web development, automation, and artificial
+intelligence.
+
+MultiQueryRetriever:
+Python was retrieved as a relevant result.
+
+It also retrieved:
+
+Java is used for enterprise software and Android application development.
+
+The MultiQueryRetriever generated broader queries such as:
+
+"What are the most popular and practical programming languages to learn?"
+
+"Which coding languages should I study for software development?"
+
+"What are the best programming languages for different tech careers?"
+
+These broader queries expanded the retrieval scope and caused an additional
+Java document to be retrieved.
+
+This additional Java result was less directly relevant to the original
+question than the Python result.
+
+
+5. TRADE-OFF
+------------
+
+MultiQueryRetriever can improve retrieval recall by generating multiple
+query formulations. This is useful when relevant information uses
+different vocabulary from the user's original question.
+
+The trade-off is that generating broader alternative queries requires
+additional LLM calls and can introduce irrelevant documents.
+
+Therefore, MultiQueryRetriever provides potentially better retrieval
+coverage at the cost of extra processing and possible retrieval noise.
+
+
+6. CONCLUSION
+-------------
+
+RecursiveCharacterTextSplitter provides more natural document chunks
+than simple fixed-size splitting.
+
+The plain retriever performs one similarity search, while
+MultiQueryRetriever generates multiple alternative queries and combines
+their results.
+
+The five-question evaluation showed that the current Week 5 corpus was
+too small to demonstrate a retrieval difference because it contains only
+one available book record.
+
+The separate worse-case challenge demonstrated the trade-off: broader
+MultiQuery searches can retrieve an additional less-relevant document.

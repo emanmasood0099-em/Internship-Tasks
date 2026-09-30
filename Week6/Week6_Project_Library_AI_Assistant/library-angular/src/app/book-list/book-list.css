@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  max-width: 1000px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  background: transparent;
+  color: #1e3a5f;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+p strong {
+  color: #374151;
+}
+
+:host > div {
+  background: white;
+  padding: 22px;
+  margin: 18px 0;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+  margin-top: 0;
+  color: #1e3a5f;
+}
+
+button {
+  border: none;
+  padding: 9px 16px;
+  margin-right: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+button:first-of-type {
+  background: #e8f0f8;
+  color: #1e3a5f;
+}
+
+button:last-of-type {
+  background: #dc3545;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+}
